@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 
 
 int main() {
@@ -17,16 +16,13 @@ int main() {
     printf("How much money do you have?: ");
     scanf("%f", &moneys);
 
-    bool done = false;
-
-    while(!done) {
+    while(1) {
 
         printf("You have %.2f euros left.\n", moneys);
 
         if((bus_ticket_price > moneys) && (taxi_price > moneys)) {
             printf("Walk.\n");
-            done = true;
-            break;
+            return 0;
         }
 
         int selection;
@@ -36,8 +32,11 @@ int main() {
         printf("2) Taxi (%.2f) euros\n", taxi_price);
 
         do {
-        scanf("%d", &selection);
-        } while (selection != 1 && selection != 2);
+            if (scanf("%d", &selection) != 1) {
+                while(getchar() != '\n');
+                printf("invalid input\n");
+            }
+        } while (1 > selection && selection > 2);
 
         switch (selection) {
         case 1:
