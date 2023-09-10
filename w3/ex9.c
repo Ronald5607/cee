@@ -23,19 +23,30 @@ int main() {
         numbers[i] = 1 + rand() % 20;
         printf("%d\n", numbers[i]);
     }
-    numbers[ARRAY_SIZE] = 0;
+    numbers[ARRAY_SIZE-1] = 0;
+    printf("%d\n", numbers[ARRAY_SIZE-1]);
 
-    unsigned int selection;
+    int selection = -1;
 
     do {
         printf("Enter a number you want to find: ");
-        while (scanf("%u", &selection) != 1) {
+        if (scanf("%u", &selection) != 1) {
             while (getchar() != '\n') ;
             printf("Invalid input.\n");
         }
-    } while (selection == 0);
+    } while (selection < 0);
 
-    printf("%u", find_first(numbers, selection));
+    if (selection == 0) {
+        return 0;
+    }
+
+    int index_found = find_first(numbers, selection);
+    if (index_found != -1) {
+        printf("Found number %d at index %u", selection, index_found);
+    } else {
+        printf("Not found.");
+    }
+
 
     return 0;
 }
