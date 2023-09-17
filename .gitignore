@@ -2,3 +2,6 @@
 *.out
 *.exe
 tasks.json
+*.ilk
+*.obj
+*.pdb

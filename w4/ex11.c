@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#define user_string_length 128
+#define change_string_length 3
 
 int change_char(char *string_to_update, const char *change_string) {
-
-    if (strlen(change_string) != 2) return 0;
 
     int i = 0;
     int number = 0;
@@ -30,13 +30,13 @@ void read_string(char * user_string, int size) {
 
 int main() {
 
-    char user_string[128] = {};
-    char change_string[3] = {};
+    char user_string[user_string_length] = {};
+    char change_string[change_string_length] = {};
 
     printf("Enter a string: ");
-    read_string(user_string, 128);
+    read_string(user_string, user_string_length);
     printf("Enter two characters (last one will replace all instances of the first): ");
-    read_string(change_string, 3);
+    read_string(change_string, change_string_length);
 
     int changed = change_char(user_string, change_string);
     if (changed != 0) {
