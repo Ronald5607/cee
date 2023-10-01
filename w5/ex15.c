@@ -41,12 +41,21 @@ int main() {
     while (fgets(line, MAX_LINE_WIDTH, opened_file) && i < MAX_STRUCTS) {
         char *token = strtok(line, ";");
         if (token != NULL) {
-            strncpy(items[i].name, token, MAX_NAME_WIDTH);
-        
+            char *second_token = strtok(NULL, ";");
+            if (second_token != NULL) {
+                strncpy(items[i].name, token, MAX_NAME_WIDTH);
+                // strncpy doesnt add terminating zero to the string if source is longer than size
+                items[i].name[MAX_NAME_WIDTH-1] = '\0';
+                sscanf(second_token, "%lf", &items[i].price);
+                i++;
+            }
         }
     }
-    printf("%s, %f\n", items[0].name, items[0].price);
     fclose(opened_file);
+    printf("Price:   Name:\n");
+    for (int j; j<i; j++) {
+        printf("%8.2lf %s\n", items[j].price, items[j].name);
+    }
 
     return 0;
 }
