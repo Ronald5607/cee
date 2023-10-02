@@ -7,6 +7,7 @@
 
 #define OUTPUT_SIZE 32+1
 #define MAX_WORD_SIZE 64
+#define CHARACTER 128
 
 
 char create_printable() {
@@ -14,7 +15,7 @@ char create_printable() {
     int printable;
     do {
         // getting a random ASCII character, isprint checks ASCII value which is between 0 and 127
-        printable = rand() % CHAR_MAX+1;
+        printable = rand() % CHARACTER;
     } while (!isprint(printable) && isspace(printable));
     return printable;
 }
