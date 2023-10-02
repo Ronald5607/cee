@@ -37,7 +37,9 @@ int main() {
             printf("0x%x\n", random_number);
             random_number = (random_number >> number) & 0x3f;
             printf("0x%.8x\n", random_number);
+        } else if (number > 15) {
+            printf("Too large\n");
         }
     }
-
+    return 0;
 }
