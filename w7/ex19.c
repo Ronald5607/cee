@@ -71,11 +71,11 @@ int main() {
         char *token = strtok(line, ";");
         if (token != NULL) {
             char *second_token = strtok(NULL, ";");
-            if (second_token != NULL) {
+            if (second_token != NULL && sscanf(second_token, "%lf", &items[i].price)) {
                 strncpy(items[i].name, token, MAX_NAME_WIDTH);
                 // strncpy doesnt add terminating zero to the string if source is longer than size
                 items[i].name[MAX_NAME_WIDTH-1] = '\0';
-                sscanf(second_token, "%lf", &items[i].price);
+                
                 i++;
             }
         }
@@ -87,7 +87,7 @@ int main() {
     do {
         printf("1) Sort by price\n");
         printf("2) Sort by name\n");
-        printf("Select sorting method:\n");
+        printf("Select sorting method: ");
         read_string(input, USER_INPUT_LENGTH);
         if (!sscanf(input, "%d", &number)) {
             printf("Invalid input.\n");

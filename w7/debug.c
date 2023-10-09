@@ -14,7 +14,7 @@ int dprintf(int debug_level, const char *fmt, ...) {
         va_list args;
         va_start(args, fmt);
 
-        count += fprintf(stderr, "DBG%d ", debug_level);
+        count += fprintf(stderr, "[DBG%d] ", debug_level);
         count += vfprintf(stderr, fmt, args);
         va_end(args);
     }

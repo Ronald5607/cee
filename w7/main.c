@@ -18,7 +18,7 @@ int main() {
     int number = 0;
     char input[USER_INPUT_LENGTH] = {};
     do {
-        printf("Enter debug level: ");
+        printf("Enter debug level (0-4): ");
         read_string(input, USER_INPUT_LENGTH);
         if (!sscanf(input, "%d", &number)) {
             printf("Invalid input.\n");
@@ -28,7 +28,7 @@ int main() {
     set_debug_level(number);
     for (int i=0; i<5; i++) {
         int random = rand() % 5;
-        dprintf(random, "test %d\n", i);
+        dprintf(random, "test %d\n", i+1);
     }
 
     return 0;
